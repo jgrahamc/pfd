@@ -11,7 +11,7 @@
 // Inspired by the prime factorization sweater:
 // http://sonderbooks.com/blog/?p=843
 
-// 25 distinct RGB colors generated using the generating service on
+// 48 distinct RGB colors generated using the generating service on
 // http://phrogz.net/css/distinct-colors.html.  This tries to find
 // visually distinct colors that humans will be able to distinguish.
 
@@ -44,7 +44,13 @@ void setup() {
     smooth();
     textAlign(CENTER, CENTER);
 
+// "square" sets the number of circles on a side, i.e. 10 creates
+// a 10x10 square with 100 circles.
+
     int square = 12;
+    
+// Create a grid of circles.
+    
     int[] primes = new int[square * square];
     int space = side/square - 2;
     int used = 0;
