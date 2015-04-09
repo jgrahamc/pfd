@@ -15,10 +15,12 @@
 // http://phrogz.net/css/distinct-colors.html.  This tries to find
 // visually distinct colors that humans will be able to distinguish.
 
-int[] colors = { #ff0000, #e5b073, #73ff40, #23698c, #312040, #a62929, 
-  #fff240, #00cc88, #80b3ff, #cc00a3, #e6b4ac, #5c6633, #6cd9d2, #00004d, 
-  #ff0066, #cc5200, #e1ffbf, #1a3331, #1f00e6, #b3597d, #593000, #338000, 
-  #00ccff, #986cd9, #401016 };
+int[] colors = { #c75058, #503973, #00574b, #c7be3c, #e3b6bc, #daccff, 
+#e5fffa, #ffaa00, #e31776, #3228c7, #80ffcc, #735322, #ffb3e0, #120b73, 
+#67736d, #e3822d, #735067, #4d70ff, #1aff66, #e3c8b6, #030102, #455173, 
+#003b00, #ff5500, #3b0033, #1784e3, #52ab44, #ffad99, #ab22a2, #77b2c7, 
+#141f0f, #ab2611, #bb00ff, #002b3b, #e5ffb2, #572323, #cf99ff, #00bbff, 
+#4d5734, #1f0303, #150c1f, #17d5e3, #a6e300 };
 
 // This is the size of the square on which the prime factorization is
 // drawn.  This can be made much larger than the screen for saving a
@@ -29,7 +31,7 @@ int side = 1024;
 // When set to true the factors are printed inside the circles,
 // otherwise just colors are used
 
-boolean number = false;
+boolean number = true;
 
 // I do everything in setup() because there's no animation and
 // therefore no reason to have code in draw()
@@ -42,13 +44,14 @@ void setup() {
     smooth();
     textAlign(CENTER, CENTER);
 
-    int[] primes = new int[100];
-    int space = side/10 - 2;
+    int square = 12;
+    int[] primes = new int[square * square];
+    int space = side/square - 2;
     int used = 0;
   
-    for (int c = 0; c < 10; c++ ) {
-        for (int r = 0; r < 10; r++ ) {
-          int n = r+1 + c*10;
+    for (int c = 0; c < square; c++ ) {
+        for (int r = 0; r < square; r++ ) {
+          int n = r+1 + c*square;
           if ( n != 1 ) {
             
             // Factorize the number into its prime factors and
