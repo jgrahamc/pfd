@@ -11,14 +11,16 @@
 // Inspired by the prime factorization sweater:
 // http://sonderbooks.com/blog/?p=843
 
-// 25 distinct RGB colors generated using the generating service on
+// 48 distinct RGB colors generated using the generating service on
 // http://phrogz.net/css/distinct-colors.html.  This tries to find
 // visually distinct colors that humans will be able to distinguish.
 
 int[] colors = { #ff0000, #e5b073, #73ff40, #23698c, #312040, #a62929, 
   #fff240, #00cc88, #80b3ff, #cc00a3, #e6b4ac, #5c6633, #6cd9d2, #00004d, 
   #ff0066, #cc5200, #e1ffbf, #1a3331, #1f00e6, #b3597d, #593000, #338000, 
-  #00ccff, #986cd9, #401016 };
+  #00ccff, #986cd9, #401016, #1784e3, #52ab44, #ffad99, #ab22a2, #77b2c7, 
+  #141f0f, #ab2611, #bb00ff, #002b3b, #e5ffb2, #572323, #cf99ff, #00bbff, 
+  #4d5734, #1f0303, #150c1f, #17d5e3, #a6e300 };
 
 // This is the size of the square on which the prime factorization is
 // drawn.  This can be made much larger than the screen for saving a
@@ -29,7 +31,7 @@ int side = 1024;
 // When set to true the factors are printed inside the circles,
 // otherwise just colors are used
 
-boolean number = false;
+boolean number = true;
 
 // I do everything in setup() because there's no animation and
 // therefore no reason to have code in draw()
@@ -42,13 +44,20 @@ void setup() {
     smooth();
     textAlign(CENTER, CENTER);
 
-    int[] primes = new int[100];
-    int space = side/10 - 2;
+// "square" sets the number of circles on a side, i.e. 10 creates
+// a 10x10 square with 100 circles.
+
+    int square = 12;
+    
+// Create a grid of circles.
+    
+    int[] primes = new int[square * square];
+    int space = side/square - 2;
     int used = 0;
   
-    for (int c = 0; c < 10; c++ ) {
-        for (int r = 0; r < 10; r++ ) {
-          int n = r+1 + c*10;
+    for (int c = 0; c < square; c++ ) {
+        for (int r = 0; r < square; r++ ) {
+          int n = r+1 + c*square;
           if ( n != 1 ) {
             
             // Factorize the number into its prime factors and
